@@ -73,6 +73,10 @@ export default class Lottie extends React.Component {
     this.anim.setDirection(this.props.direction);
   }
 
+  goToAndStop() {
+    this.anim.goToAndStop(this.props.goToFrame, this.props.isFrame, this.props.name);
+  }
+
   play() {
     this.anim.play();
   }
@@ -185,6 +189,9 @@ Lottie.propTypes = {
   isClickToPauseDisabled: PropTypes.bool,
   title: PropTypes.string,
   style: PropTypes.string,
+  name: PropTypes.string,
+  isFrame: PropTypes.bool,
+  goToFrame: PropTypes.number,
 };
 
 Lottie.defaultProps = {
