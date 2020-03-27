@@ -38,7 +38,7 @@ export default class Lottie extends React.Component {
     if (this.options.animationData !== nextProps.options.animationData) {
       this.deRegisterEvents(this.props.eventListeners);
       this.destroy();
-      this.options = {...this.options, ...nextProps.options};
+      this.options = { ...this.options, ...nextProps.options };
       this.anim = lottie.loadAnimation(this.options);
       this.registerEvents(nextProps.eventListeners);
     }
@@ -48,7 +48,7 @@ export default class Lottie extends React.Component {
     if (this.props.isStopped) {
       this.stop();
     } else if (this.props.segments) {
-      this.playSegments();
+      this.playSegments(this.props.segments, this.props.segmentLoop);
     } else {
       this.play();
     }
@@ -73,16 +73,12 @@ export default class Lottie extends React.Component {
     this.anim.setDirection(this.props.direction);
   }
 
-  goToAndStop() {
-    this.anim.goToAndStop(this.props.goToFrame, this.props.isFrame, this.props.name);
-  }
-
   play() {
     this.anim.play();
   }
 
   playSegments() {
-    this.anim.playSegments(this.props.segments);
+    this.anim.playSegments(this.props.segments, this.props.segmentLoop);
   }
 
   stop() {
@@ -183,15 +179,13 @@ Lottie.propTypes = {
   isPaused: PropTypes.bool,
   speed: PropTypes.number,
   segments: PropTypes.arrayOf(PropTypes.number),
+  segmentLoop: PropTypes.bool,
   direction: PropTypes.number,
   ariaRole: PropTypes.string,
   ariaLabel: PropTypes.string,
   isClickToPauseDisabled: PropTypes.bool,
   title: PropTypes.string,
   style: PropTypes.string,
-  name: PropTypes.string,
-  isFrame: PropTypes.bool,
-  goToFrame: PropTypes.number,
 };
 
 Lottie.defaultProps = {
