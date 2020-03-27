@@ -27,7 +27,7 @@ export default class Lottie extends React.Component {
       rendererSettings,
     };
 
-    this.options = { ...this.options, ...options };
+    this.options = {...this.options, ...options};
 
     this.anim = lottie.loadAnimation(this.options);
     this.registerEvents(eventListeners);
